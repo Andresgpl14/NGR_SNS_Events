@@ -1,0 +1,26 @@
+service: proyecto-demo
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1   
+
+
+functions:
+  demoSNS:
+    handler: handler.process_sns  # Nombre del archivo y la función Lambda
+    events:
+      - sns: 
+          arn: "arn:aws:sns:us-east-1:123456789012:test-topic"
+
+custom:
+  serverless-offline-sns:
+    port: 4002 # a free port for the sns server to run on
+    debug: true
+
+plugins:
+  - serverless-offline
+  - serverless-offline-sns
+  #- serverless-dynamodb-local
+#  - serverless-python-requirements  # Plugin para gestionar dependencias si las usas
