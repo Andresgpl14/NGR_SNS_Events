@@ -4,7 +4,10 @@ frameworkVersion: '4'
 provider:
   name: aws
   runtime: python3.12
-  region: us-east-1   
+
+# provider:
+#   name: aws
+#   runtime: nodejs18.x
 
 
 functions:
@@ -16,11 +19,13 @@ functions:
 
 custom:
   serverless-offline-sns:
-    port: 4002 # a free port for the sns server to run on
+    localPort: 4002
+    remotePort: 3002
+    #sns-endpoint: http://localhost:4002
     debug: true
 
 plugins:
-  - serverless-offline
   - serverless-offline-sns
+  - serverless-offline
   #- serverless-dynamodb-local
 #  - serverless-python-requirements  # Plugin para gestionar dependencias si las usas
