@@ -13,6 +13,7 @@ provider:
 functions:
   demoSNS:
     handler: handler.process_sns  # Nombre del archivo y la función Lambda
+    timeout: 30
     events:
       - sns: 
           arn: "arn:aws:sns:us-east-1:123456789012:test-topic"
